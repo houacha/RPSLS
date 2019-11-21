@@ -8,25 +8,127 @@ namespace RPLS
 {
     public class GameFuntions
     {
-        public List<string> winningPlays = new List<string>();
-        public List<string> losingPlays = new List<string>();
-        public List<string> ties = new List<string>();
         public GameFuntions()
         {
 
         }
         public void Run()
         {
+            bool isComputer = false;
+            string opponent;
             Human player1 = new Human();
-            player1.AllCombos();
+            player1.WinsTies();
             Human player2 = new Human();
-            player2.AllCombos();
+            player2.WinsTies();
             CPU computer = new CPU();
-            computer.AllCombos();
-            // player1.ChooseOption();
-            // Console.WriteLine(player1.choice.ToLower());
-            // Console.ReadLine();
+            computer.WinsTies();
+            do 
+            {
+                Console.Clear();
+                Console.WriteLine("Challenge: Hooman or Computer");
+                opponent = Console.ReadLine().ToLower();
+            } while (opponent != "hooman" && opponent != "computer" && opponent != "h" && opponent != "c" && opponent != "cpu" && opponent != "human");
+            if (opponent == "hooman" || opponent == "h" || opponent == "human")
+            {
+                 Console.Clear();
+                 Console.WriteLine("Enter name for Player 1:");
+                 player1.name = Console.ReadLine();
+                 Console.Clear();
+                 Console.WriteLine("Enter name for Player 2:");
+                 player2.name = Console.ReadLine();
+            }
+            else if (opponent == "computer" || opponent == "c" || opponent == "cpu")
+            {
+                isComputer = true;
+                Console.Clear();
+                Console.WriteLine("Enter name for Player 1:");
+                player1.name = Console.ReadLine();
+            }
+            while (player1.winCount != 2 && computer.winCount != 2 && player2.winCount != 2)
+            {
+                if (opponent == "hooman" || opponent == "h" || opponent == "human")
+                {
+                    player1.ChooseOption(player1.name);
+                    player2.ChooseOption(player2.name);
+                    if (player1.winningPlays.Contains(player1.choice + player2.choice))
+                    {
+                        Console.Clear();
+                        player1.winCount += 1;
+                        Console.WriteLine(player1.name + " chose " + player1.choice);
+                        Console.WriteLine(player2.name + " chose " + player2.choice);
+                        Console.WriteLine(player1.name + " WON THIS ROUND!");
+                    }
+                    else if (player1.ties.Contains(player1.choice + player2.choice))
+                    {
+                        Console.Clear();
+                        Console.WriteLine(player1.name + " chose " + player1.choice);
+                        Console.WriteLine(player2.name + " chose " + player2.choice);
+                        Console.WriteLine("IT'S A TIE! You both suck.");
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        player2.winCount += 1;
+                        Console.WriteLine(player1.name + " chose " + player1.choice);
+                        Console.WriteLine(player2.name + " chose " + player2.choice);
+                        Console.WriteLine(player2.name + " WON THIS ROUND!");
+                    }
+                    Console.ReadLine();
+                }
+                else if (opponent == "computer" || opponent == "c" || opponent == "cpu")
+                {
 
+                    player1.ChooseOption(player1.name);
+                    computer.ComputerChoose();
+                    if (player1.winningPlays.Contains(player1.choice + computer.choice))
+                    {
+                        Console.Clear();
+                        player1.winCount += 1;
+                        Console.WriteLine(player1.name + " chose " + player1.choice);
+                        Console.WriteLine("Computer chose " + computer.choice);
+                        Console.WriteLine(player1.name + " WON THIS ROUND!");
+                    }
+                    else if (player1.ties.Contains(player1.choice + computer.choice))
+                    {
+                        Console.Clear();
+                        Console.WriteLine(player1.name + " chose " + player1.choice);
+                        Console.WriteLine("Computer chose " + computer.choice);
+                        Console.WriteLine("IT'S A TIE! You both suck.");
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        computer.winCount += 1;
+                        Console.WriteLine(player1.name + " chose " + player1.choice);
+                        Console.WriteLine("Computer chose " + computer.choice);
+                        Console.WriteLine("THE COMPUTER WON THIS ROUND!");
+                    }
+                    Console.ReadLine();
+                }
+            }
+            if (computer.winCount == 2)
+            {
+                Console.WriteLine("Final Scores: " + player1.name + ": " + player1.winCount + " Computer: " + computer.winCount);
+                Console.WriteLine("You are an awful person. YOU LOSE!!!");
+            }
+            else if (player2.winCount == 2)
+            {
+                Console.WriteLine("Final Scores: " + player1.name + ": " + player1.winCount + " " + player2.name + ": " + player2.winCount);
+                Console.WriteLine(player2.name + " is the WINNER!!! Sorry " + player1.name + ", you suck hard.");
+            }
+            else if (player1.winCount == 2)
+            {
+                if (isComputer == true)
+                {
+                    Console.WriteLine("Final Scores: " + player1.name + ": " + player1.winCount + " " + "Computer: " + computer.winCount);
+                    Console.WriteLine("YOU ARE THE WINNER!!! CONGRATS!");
+                }
+                else {
+                    Console.WriteLine("Final Scores: " + player1.name + ": " + player1.winCount + " " + player2.name + ": " + player2.winCount);
+                    Console.WriteLine("You has beat " + player2.name + ". Congrats " + player1.name + "!");
+                }
+            }
+            Console.ReadLine();
         }
     }
 }

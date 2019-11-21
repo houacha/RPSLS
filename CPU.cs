@@ -22,19 +22,19 @@ namespace RPLS
             switch (Rng())
             {
                 case 1:
-                    choice = "Spock";
+                    choice = "spock";
                     break;
                 case 2:
-                    choice = "Rock";
+                    choice = "rock";
                     break;
                 case 3:
-                    choice = "Paper";
+                    choice = "paper";
                     break;
                 case 4:
-                    choice = "Scissors";
+                    choice = "scissors";
                     break;
                 case 5:
-                    choice = "Lizard";
+                    choice = "lizard";
                     break;
                 default:
                     break;

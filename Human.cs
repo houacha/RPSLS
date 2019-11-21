@@ -8,18 +8,44 @@ namespace RPLS
 {
     class Human : Player
     {
+        public string name;
         public Human()
         {
-
+            winCount = 0;
         }
-        public void ChooseOption()
+        public void ChooseOption(string turn)
         {
-            Console.WriteLine("Choose Your Warrior:");
-            foreach (string choices in options)
+            do
             {
-                Console.WriteLine(choices);
-            }
-            choice = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine(turn + "'s turn");
+                Console.WriteLine("Choose Your Warrior:");
+                for (int i = 0; i < options.Length; i++)
+                {
+                    Console.WriteLine((i+1) + ". " + options[i]);
+                }
+                choice = Console.ReadLine().ToLower();
+                switch (choice)
+                {
+                    case "1":
+                        choice = "rock";
+                        break;
+                    case "2":
+                        choice = "paper";
+                        break;
+                    case "3":
+                        choice = "scissors";
+                        break;
+                    case "4":
+                        choice = "lizard";
+                        break;
+                    case "5":
+                        choice = "spock";
+                        break;
+                    default:
+                        break;
+                }
+            } while (choice != "paper" && choice != "rock" && choice != "scissors" && choice != "spock" && choice != "lizard");
         }
     }
 }
