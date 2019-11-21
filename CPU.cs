@@ -8,37 +8,36 @@ namespace RPLS
 {
     class CPU : Player
     {
-        public int Rng(int startNum, int finalNum)
-        {
-            Random random = new Random();
-            return random.Next(startNum, finalNum);
-        }
         public CPU()
         {
 
         }
-        public void ComputerChoose()
+        public override void ChooseOption(string turn)
         {
-            switch (Rng(1,6))
+            switch (turn)
             {
-                case 1:
+                case "1":
                     choice = "spock";
                     break;
-                case 2:
+                case "2":
                     choice = "rock";
                     break;
-                case 3:
+                case "3":
                     choice = "paper";
                     break;
-                case 4:
+                case "4":
                     choice = "scissors";
                     break;
-                case 5:
+                case "5":
                     choice = "lizard";
                     break;
                 default:
                     break;
             }
+        }
+        public override void Name(string yourName)
+        {
+            
         }
     }
 }

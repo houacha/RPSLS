@@ -8,12 +8,12 @@ namespace RPLS
 {
     class Human : Player
     {
-        public string name;
+        public string[] options = { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
         public Human()
         {
-            winCount = 0;
+
         }
-        public void ChooseOption(string turn)
+        public override void ChooseOption(string turn)
         {
             do
             {
@@ -46,6 +46,13 @@ namespace RPLS
                         break;
                 }
             } while (choice != "paper" && choice != "rock" && choice != "scissors" && choice != "spock" && choice != "lizard");
+        }
+        public override void Name(string yourName)
+        {
+            Console.Clear();
+            Console.WriteLine("Enter name for Player " + yourName + ":");
+            name = Console.ReadLine();
+
         }
     }
 }
