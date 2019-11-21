@@ -8,7 +8,6 @@ namespace RPLS
 {
     class Human : Player
     {
-        public string[] options = { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
         public Human()
         {
 
@@ -20,7 +19,7 @@ namespace RPLS
                 Console.Clear();
                 Console.WriteLine(turn + "'s turn");
                 Console.WriteLine("Choose Your Warrior:");
-                for (int i = 0; i < options.Length; i++)
+                for (int i = 0; i < options.Count; i++)
                 {
                     Console.WriteLine((i+1) + ". " + options[i]);
                 }
@@ -47,10 +46,10 @@ namespace RPLS
                 }
             } while (choice != "paper" && choice != "rock" && choice != "scissors" && choice != "spock" && choice != "lizard");
         }
-        public override void Name(string yourName)
+        public override void Name()
         {
             Console.Clear();
-            Console.WriteLine("Enter name for Player " + yourName + ":");
+            Console.WriteLine("Enter name for Players:");
             name = Console.ReadLine();
 
         }

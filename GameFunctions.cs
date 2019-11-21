@@ -13,70 +13,69 @@ namespace RPLS
         Player player2;
         public List<string> winningPlays = new List<string>();
         public List<string> ties = new List<string>();
-        public string[] options = { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
         public void WinsTies()
         {
-            for (int i = 0; i < options.Length; i++)
+            for (int i = 0; i < player1.options.Count; i++)
             {
-                for (int j = 0; j < options.Length; j++)
+                for (int j = 0; j < player1.options.Count; j++)
                 {
-                    if (winningPlays.Contains((options[j] + options[i]).ToLower()))
+                    if (winningPlays.Contains((player1.options[j] + player1.options[i]).ToLower()))
                     {
                         continue;
                     }
-                    else if (options[j] == options[i])
+                    else if (player1.options[j] == player1.options[i])
                     {
-                        ties.Add((options[j] + options[i]).ToLower());
+                        ties.Add((player1.options[j] + player1.options[i]).ToLower());
                     }
-                    else if (options[i] == "Rock")
+                    else if (player1.options[i] == "Rock")
                     {
-                        if (options[j] == "Scissors" || options[j] == "Lizard")
+                        if (player1.options[j] == "Scissors" || player1.options[j] == "Lizard")
                         {
-                            winningPlays.Add((options[i] + options[j]).ToLower());
+                            winningPlays.Add((player1.options[i] + player1.options[j]).ToLower());
                         }
                         else
                         {
                             continue;
                         }
                     }
-                    else if (options[i] == "Scissors")
+                    else if (player1.options[i] == "Scissors")
                     {
-                        if (options[j] == "Paper" || options[j] == "Lizard")
+                        if (player1.options[j] == "Paper" || player1.options[j] == "Lizard")
                         {
-                            winningPlays.Add((options[i] + options[j]).ToLower());
+                            winningPlays.Add((player1.options[i] + player1.options[j]).ToLower());
                         }
                         else
                         {
                             continue;
                         }
                     }
-                    else if (options[i] == "Paper")
+                    else if (player1.options[i] == "Paper")
                     {
-                        if (options[j] == "Rock" || options[j] == "Spock")
+                        if (player1.options[j] == "Rock" || player1.options[j] == "Spock")
                         {
-                            winningPlays.Add((options[i] + options[j]).ToLower());
+                            winningPlays.Add((player1.options[i] + player1.options[j]).ToLower());
                         }
                         else
                         {
                             continue;
                         }
                     }
-                    else if (options[i] == "Spock")
+                    else if (player1.options[i] == "Spock")
                     {
-                        if (options[j] == "Rock" || options[j] == "Scissors")
+                        if (player1.options[j] == "Rock" || player1.options[j] == "Scissors")
                         {
-                            winningPlays.Add(options[i] + options[j]);
+                            winningPlays.Add(player1.options[i] + player1.options[j]);
                         }
                         else
                         {
                             continue;
                         }
                     }
-                    else if (options[i] == "Lizard")
+                    else if (player1.options[i] == "Lizard")
                     {
-                        if (options[j] == "Spock" || options[j] == "Paper")
+                        if (player1.options[j] == "Spock" || player1.options[j] == "Paper")
                         {
-                            winningPlays.Add((options[i] + options[j]).ToLower());
+                            winningPlays.Add((player1.options[i] + player1.options[j]).ToLower());
                         }
                         else
                         {
@@ -140,11 +139,6 @@ namespace RPLS
                 Console.WriteLine("You has beat " + player2.name + ". Congrats " + player1.name + "!");
             }
         }
-        public int Rng(int startNum, int finalNum)
-        {
-            Random random = new Random();
-            return random.Next(startNum, finalNum);
-        }
         public void PlayAgain()
         {
             Console.WriteLine("Do you want to play again?");
@@ -197,9 +191,8 @@ namespace RPLS
                 Console.WriteLine(player2.name + " WON THIS ROUND!");
             }
         }
-        public void Run()
+        public void NameYourself()
         {
-            WinsTies();
             do
             {
                 Console.Clear();
@@ -210,34 +203,28 @@ namespace RPLS
             {
                 player1 = new Human();
                 player2 = new Human();
-                player1.Name("1");
-                player2.Name("2");
+                player1.Name();
+                player2.Name();
 
             }
             else if (opponent == "computer" || opponent == "c" || opponent == "cpu")
             {
                 player1 = new Human();
-                player1.Name(player1.name);
+                player1.Name();
                 player2 = new CPU();
-                player2.name = "Super Underestimated Computer King: Egor Robot";
+                player2.Name();
             }
+        }
+        public void Run()
+        {
+            NameYourself();
+            WinsTies();
             while (player1.winCount != 2 && player2.winCount != 2)
             {
-                if (opponent == "hooman" || opponent == "h" || opponent == "human")
-                {
-                    player1.ChooseOption(player1.name);
-                    player2.ChooseOption(player2.name);
-                    Compare();
-                    Console.ReadLine();
-                }
-                else if (opponent == "computer" || opponent == "c" || opponent == "cpu")
-                {
-                    string convertedString = Convert.ToString(Rng(1, 6));
-                    player1.ChooseOption(player1.name);
-                    player2.ChooseOption(convertedString);
-                    Compare();
-                    Console.ReadLine();
-                }
+                player1.ChooseOption(player1.name);
+                player2.ChooseOption(player2.name);
+                Compare();
+                Console.ReadLine();
             }
             WinPrompt();
             PlayAgain();

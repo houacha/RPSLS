@@ -8,10 +8,11 @@ namespace RPLS
 {
     abstract class Player
     {
+        public List<string> options = new List<string>(){ "Rock", "Paper", "Scissors", "Lizard", "Spock" };
         public string name;
         public string choice;
         public int winCount;
         public abstract void ChooseOption(string turn);
-        public abstract void Name(string yourName);
+        public abstract void Name();
     }
 }

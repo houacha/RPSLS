@@ -12,32 +12,18 @@ namespace RPLS
         {
 
         }
+        public int Rng(int startNum, int finalNum)
+        {
+            Random random = new Random();
+            return random.Next(startNum, finalNum);
+        }
         public override void ChooseOption(string turn)
         {
-            switch (turn)
-            {
-                case "1":
-                    choice = "spock";
-                    break;
-                case "2":
-                    choice = "rock";
-                    break;
-                case "3":
-                    choice = "paper";
-                    break;
-                case "4":
-                    choice = "scissors";
-                    break;
-                case "5":
-                    choice = "lizard";
-                    break;
-                default:
-                    break;
-            }
+            choice = options[Rng(0, 5)];
         }
-        public override void Name(string yourName)
+        public override void Name()
         {
-            
+            name = "Super Underestimated Computer King: Egor Robot";
         }
     }
 }
