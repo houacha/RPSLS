@@ -12,6 +12,32 @@ namespace RPLS
         {
 
         }
+        public void GameStart()
+        {
+            Console.WriteLine("Welcome to Rock, Paper, Scissors, Lizard, AND Spock.");
+            Console.WriteLine("The game is played just like a traditional game of rock, paper, scissors but with the obvious added two options.");
+            Console.WriteLine("In this version everything can beat two other things.");
+            Console.WriteLine("In short, paper beats rock and Spock; rock beats scissors and lizard; scissors beat paper and lizard; Spock beats rock  and scizzors; lizard beats paper and Spock");
+            Console.WriteLine("This game is also best 2 out of 3.");
+            Console.WriteLine("With that being said, would you like to start the game?");
+            string answer = Console.ReadLine().ToLower();
+            while (answer != "yes" && answer != "no")
+            {
+                Console.Clear();
+                Console.WriteLine("If you want to exit this prompt, you better answer 'yes' or 'no' to the initial question!");
+                answer = Console.ReadLine().ToLower();
+            }
+            switch (answer)
+            {
+                case "yes":
+                    Run();
+                    break;
+                case "no":
+                    break;
+                default:
+                    break;
+            }
+        }
         public void Run()
         {
             bool isComputer = false;

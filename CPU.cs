@@ -8,10 +8,10 @@ namespace RPLS
 {
     class CPU : Player
     {
-        public int Rng()
+        public int Rng(int startNum, int finalNum)
         {
             Random random = new Random();
-            return random.Next(1, 6);
+            return random.Next(startNum, finalNum);
         }
         public CPU()
         {
@@ -19,7 +19,7 @@ namespace RPLS
         }
         public void ComputerChoose()
         {
-            switch (Rng())
+            switch (Rng(1,6))
             {
                 case 1:
                     choice = "spock";

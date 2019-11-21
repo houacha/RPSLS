@@ -11,7 +11,7 @@ namespace RPLS
         static void Main(string[] args)
         {
             GameFuntions start = new GameFuntions();
-            start.Run();
+            start.GameStart();
         }
     }
 }
